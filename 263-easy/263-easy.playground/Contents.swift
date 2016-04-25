@@ -14,7 +14,7 @@ func shanonEntropy(sequence: String) -> Double {
         (character) -> Double in
             let occurranceCount = Double(sequence.componentsSeparatedByString(String(character)).count - 1)
             return (occurranceCount / n) * log2(occurranceCount / n)
-        }.reduce(0, combine: +)
+    }.reduce(0, combine: +)
 }
 
 shanonEntropy("122333444455555666666777777788888888")
