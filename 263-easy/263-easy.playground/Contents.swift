@@ -8,10 +8,9 @@ import Foundation
 
 func shanonEntropy(sequence: String) -> Double {
     
-    let uniqueChars = Set<Character>(sequence.characters)
     let n = Double(sequence.characters.count)
     
-    return -1 * uniqueChars.map {
+    return -1 * Set(sequence.characters).map {
         (character) -> Double in
             let occurranceCount = Double(sequence.componentsSeparatedByString(String(character)).count - 1)
             return (occurranceCount / n) * log2(occurranceCount / n)
