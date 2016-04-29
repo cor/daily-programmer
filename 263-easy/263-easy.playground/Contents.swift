@@ -10,10 +10,16 @@ func shanonEntropy(sequence: String) -> Double {
     
     let n = Double(sequence.characters.count)
     
-    return -1 * Set(sequence.characters).map {
+    return -Set(sequence.characters).map {
+        
         (character) -> Double in
-            let occurranceCount = Double(sequence.componentsSeparatedByString(String(character)).count - 1)
-            return (occurranceCount / n) * log2(occurranceCount / n)
+        
+        let occurranceCount = Double(sequence.characters.reduce(0) {
+            (accumulator: Int, currentCharacter: Character) -> Int in
+            return currentCharacter == character ? accumulator + 1 : accumulator
+        })
+        
+        return (occurranceCount / n) * log2(occurranceCount / n)
     }.reduce(0, combine: +)
 }
 
